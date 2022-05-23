@@ -1,0 +1,685 @@
+$border_color: #D2D2D7
+$border_color_active: #0192F8
+$color_btn: #1D1D1F
+$color_title: #111111
+$link_color: #0192F8
+$gray: #969696
+$border_color_error: #E83932
+$stizA_color: #E83932
+$stizB_color: #439ED2
+$stizPU_color: #09ACB0
+$stizD_color: #662783
+$border: 1px solid $border_color
+$margin_input-column-title: 39px
+@mixin border ($color: $border_color)
+    border: 1px solid $color
+
+html 
+    width: 100vw
+    overflow-x: hidden
+.flex-overflow
+    padding-top: 64px
+.flex_content 
+    z-index: 199
+    box-shadow: unset
+.catalog-header
+    box-shadow: rgba(1, 1, 1, 0.04) 0 7px 10px
+    border-top: 1px solid #ededed
+    z-index: 1
+.block_header .top_menu_wrapper 
+    z-index: 199
+.sazi-calc
+    padding: 0 15px 43px
+    *
+        font-family: Ubuntu
+        letter-spacing: -0.015em
+        font-style: normal
+        font-weight: 400
+    ul, li, p
+        padding: 0
+        margin: 0
+
+    &__container
+        max-width: 1200px
+        margin: 0 auto
+
+    &__section
+        padding: 0 0 43px
+        border-top: $border
+        &.no-border
+            border: 0
+        @media screen and (max-width: 500px)
+            padding: 0 0 20px
+    &__buttons-wrapper
+        display: flex
+        max-width: 890px
+        justify-content: space-between
+        @media screen and (max-width: 500px)
+            flex-wrap: wrap
+            &__btn
+                margin-bottom: 15px
+                width: 100%
+    &__btn
+        @include border
+        border-radius: 10px
+        box-sizing: border-box
+        padding: 32px 40px
+        width: 280px
+        height: 111px
+        display: inline-flex
+        align-items: center
+        background: transparent
+        font-size: 18px
+        line-height: 21px
+        text-align: center
+        text-decoration: none
+        justify-content: center
+        color: $color_btn
+        cursor: pointer
+        transition: all .1s
+        &:hover
+            @include border($color_btn)
+        &.active
+            border: 2px solid $border_color_active
+        &:not(:last-child)
+            margin-right: 10px
+        @media screen and (max-width: 767px) 
+            padding: 15px 20px
+            font-size: 16px
+        @media screen and (max-width: 500px)
+            margin-bottom: 15px
+            padding: 0 20px
+            width: 100%
+            height: 50px
+            &:not(:last-child)
+                margin-right: 0
+    h3
+        font-size: 24px
+        line-height: 28px
+        color: $color_title
+        margin: 47px 0 34px 0
+
+    &__input-wrapper
+        display: flex
+        overflow-x: auto
+        overflow: -moz-scrollbars-none
+        -ms-overflow-style: none
+        &::-webkit-scrollbar
+            width: 0
+        padding-top: 5px
+
+    &__input-wrapper-animate
+        display: flex
+
+    &__input-column
+        &--names-left
+            margin-right: 30px
+
+    &__input-column-title
+        font-size: 20px
+        margin-bottom: $margin_input-column-title
+    &__input-column-close
+        position: relative
+        top: -8px
+        cursor: pointer
+        opacity: 0.5
+        transition: opacity .3s
+        &:hover 
+            opacity: 1 
+
+    &__input-column-add
+        margin-bottom: $margin_input-column-title
+        color: $link_color
+        display: inline-block
+        cursor: pointer
+        border-bottom: 1px solid transparent
+        padding-top: 4px
+        font-size: 15px
+        &:not(.mobile):hover
+            border-bottom: 1px solid $link_color
+        &.mobile
+            text-align: center
+            width: 100%
+            @media screen and (min-width: 500px)
+                display: none
+
+    &__input-name
+        font-size: 14px
+        line-height: 16px
+        color: $gray
+        height: 30px
+        margin-bottom: 10px
+        display: flex
+        align-items: center
+        white-space: nowrap
+        position: relative
+        &--send-form 
+            height: 37px
+            margin: 0 0 15px 0
+        .hint
+            margin-left: 5px
+            position: relative
+            top: -7px
+
+    &__input-item
+        width: 79px
+        height: 30px
+        margin: 0 20px 10px 0
+        &--text
+            width: 280px
+        &--send-form 
+            height: 37px
+            margin: 0 0 15px 0
+        &.counter
+            display: flex
+            align-items: center
+            justify-content: space-between
+        input
+            @include border
+            border-radius: 6px
+            width: 100%
+            height: 100%
+            box-sizing: border-box
+            text-align: center
+            transition: all .5s
+            padding: 0 5px
+            font-size: 14px
+            &:hover
+                @include border($color_btn)
+            &.active
+                border: 1px solid $border_color_active
+            &.count
+                width: 31px
+            &.error 
+                border: 1px solid $border_color_error
+            &.ph-hide
+                @media screen and (min-width: 500px) 
+                    &::-webkit-input-placeholder
+                        color: transparent
+                    &:-moz-placeholder
+                        color: transparent
+                    &::-moz-placeholder
+                        color: transparent
+                    &:-ms-input-placeholder
+                        color: transparent
+                    &::placeholder
+                        color: transparent
+                    &:-ms-input-placeholder
+                        color: transparent
+        @media screen and (max-width: 500px)
+            width: 100%
+
+        .count-control
+            display: inline-block
+            cursor: pointer
+            margin: 0
+            height: 28px
+            &:hover > svg
+                path
+                    fill: $color_btn
+                rect
+                    stroke: $color_btn
+            svg path, svg rect
+                transition: all .5s
+
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button
+            -webkit-appearance: none
+        input[type='number']
+            -moz-appearance: textfield
+    &__result
+        &-wrapper
+            display: flex
+            flex-wrap: wrap
+            justify-content: center
+        &-item
+            &.stizB-PU, &.stizA
+                margin-right: auto
+        &-title
+            font-size: 14px
+            line-height: 16px
+            text-align: center
+            color: $gray
+            margin-bottom: 29px
+    &__materials
+        display: flex
+        align-items: flex-end
+        &-item
+            position: relative
+            &.mr-materials-item
+                margin-right: 29px
+            .block-or
+                position: absolute
+                bottom: 0
+                left: -36%
+            .hint
+                position: absolute
+                top: 68px
+                right: -27px
+        &-count
+            height: 52.22px
+            font-weight: 500
+            font-size: 30px
+            line-height: 34px
+            display: flex
+            align-items: center
+            justify-content: center
+            margin-bottom: 15.78px
+            overflow: hidden
+            max-width: 300px
+            &.stizA
+                color: $stizA_color
+            &.stizB
+                color: $stizB_color
+            &.stizPU
+                color: $stizPU_color
+            &.stizD
+                color: $stizD_color
+            > span
+                font-weight: inherit
+        &-img
+            width: 168.26px
+            height: 171.16px
+            img
+                width: 100%
+        &-descr
+            font-size: 14px
+            line-height: 16px
+            max-width: 268px
+            > *
+                margin-bottom: 24px
+        &-bottom-hint
+            font-size: 14px
+            line-height: 16px
+            text-align: center
+            color: $link_color
+            cursor: pointer
+            margin-top: 15px
+        &-layer
+            display: flex
+            margin-bottom: 17px
+            &-items
+                display: flex
+            &-item
+                width: 35px
+                height: 35px
+                box-shadow: 0 0 0 1px $border_color
+                border: 2px solid transparent
+                box-sizing: border-box
+                border-radius: 20px
+                font-size: 26px
+                line-height: 30px
+                text-align: center
+                cursor: pointer
+                margin-right: 9px
+                transition: all .3s
+                &:first-child
+                    padding-right: 1px
+                &:hover, &.active
+                    box-shadow: 0 0 0 2px $border_color_active
+                    color: $border_color_active
+    &__info-section
+        border-bottom: $border
+        border-top: $border
+        overflow: hidden
+
+    &__info-lists
+        color: $gray
+        font-size: 12px
+        line-height: 14px
+        display: flex
+        flex-wrap: wrap
+        max-height: 180px
+        @media screen and (max-width: 400px)
+            max-height: 320px
+        ul
+            padding: 0 0 0 15px
+            margin: 9px 0 19px 0
+        li
+            margin-bottom: 1px
+
+    &__info-list
+        margin-right: 50px
+        width: 180px
+
+    &__info-title
+        padding: 19px 36px 19px 0
+        font-size: 14px
+        color: $gray
+        position: relative
+        display: inline-block
+        top: -1px
+        cursor: pointer
+    &__info-close, &__info-open
+        width: 29px
+        height: 29px
+        position: absolute
+        top: 50%
+        right: 0
+        cursor: pointer
+        margin-top: -14.5px
+
+    &__info-close
+            background: url(/img/calc/close.jpg) no-repeat center
+    &__info-open
+            background: url(/img/calc/open.jpg) no-repeat center
+
+    &__info-list-title
+        margin-bottom: 10px
+
+    &__overflow
+        background: rgba(0, 0, 0, 0.5)
+        position: fixed
+        width: 100%
+        height: 100vh
+        top: 0
+        left: 0
+        display: flex
+        justify-content: center
+        overflow: auto
+        z-index: 10000
+        &::-webkit-scrollbar
+            width: 0
+    &__modal
+        background: white
+        border-radius: 15px
+        max-width: 814px
+        padding: 93px 117px
+        position: relative
+        color: $color_btn
+        box-sizing: border-box
+        margin: 0 15px
+        z-index: 100000
+        &-wrapper
+            padding: 50px 0
+            &--center 
+                display: flex
+                align-items: center
+        &-title
+            font-size: 40px
+            line-height: 46px
+            text-align: center
+            margin-bottom: 54px
+        &-image
+            margin-bottom: 38px
+            text-align: center
+            img
+                max-width: 100%
+        &-text
+            p
+                margin-bottom: 20px
+            h3
+                margin: 30px 0 20px
+            ul
+                padding-left: 15px
+            li
+                margin-bottom: 20px
+        &-close
+            position: absolute
+            top: 33px
+            right: 41px
+            cursor: pointer
+        &-outer 
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100% 
+    &__form-btn
+        border: 1px solid $border_color_active
+        border-radius: 5px
+        padding: 10px 10px
+        cursor: pointer
+        background: $border_color_active
+        color: white
+        font-size: 16px
+        &:disabled 
+            opacity: 0.7
+            cursor: default
+    .mb-0 
+        margin-bottom: 0 !important
+    .flex-start 
+        justify-content: flex-start
+    .text-center 
+        text-align: center
+
+@media screen and (max-width: 768px)   
+    .sazi-calc
+        &__result
+            &-item
+                margin-bottom: 40px
+                &.stizB-PU
+                    margin-right: 0
+            &-wrapper
+                display: flex
+                flex-wrap: wrap
+                justify-content: center
+
+            &-title
+                font-size: 14px
+                line-height: 16px
+                text-align: center
+                color: $gray
+                margin-bottom: 29px
+        &__modal
+            padding: 65px 50px
+            &-close
+                top: 17px
+                right: 18px
+
+@media screen and (max-width: 580px)
+    .sazi-calc
+        &__result
+            &-wrapper
+                flex-wrap: wrap
+                justify-content: center
+            &-item 
+                width: 100%
+                &:not(:last-child)
+                    border-bottom: 1px solid $border_color
+                    padding-bottom: 45px
+            &-title
+                margin-bottom: 20px
+                
+        &__materials
+            justify-content: center
+            .block-or
+                left: -35%
+        &__materials-img
+            width: 170px
+            height: auto
+        &__materials-count
+            font-size: 24px
+        &__info-lists
+            justify-content: space-between
+        &__info-list
+            width: 48%
+            margin-right: 0
+        h3 
+            margin: 20px 0 34px 0
+
+@media screen and (max-width: 500px)
+    .sazi-calc
+        .column-names
+            display: none
+        &__input-column, &__input-wrapper-animate
+            width: 100%
+        &__input-item input.count
+            width: auto
+            margin: 0 10px
+        &__input-wrapper-animate,  &__input-wrapper
+            flex-wrap: wrap
+        &__input-column:not(:last-child)
+            margin-bottom: 30px
+        &__input-column-title
+            margin-bottom: 20px
+            text-align: center
+        &__result-item
+            &.stizD
+                .sazi-calc__materials
+                    flex-direction: column
+                    align-items: center
+                    .mr-materials-item 
+                        margin-right: 0
+        &__modal-title
+            font-size: 28px
+            margin-bottom: 29px
+        
+
+@media screen and (max-width: 400px)
+    .sazi-calc
+        &__materials
+            .block-or
+                left: -45%
+        &__materials-img
+            width: 130px
+        &__info-lists
+            justify-content: flex-start
+        &__info-list
+            width: 100%
+        &__modal
+            padding: 50px 25px
+            &-close
+                svg 
+                    width: 20px
+                    height: 21px
+
+
+
+.block-or
+    background: $border_color_active
+    border-radius: 6px
+    display: inline-block
+    padding: 5px 24px
+    font-size: 19px
+    line-height: 25px
+    color: white
+
+.hint
+    background: url(/img/calc/hint.svg) no-repeat center
+    width: 15px
+    height: 15px
+    display: inline-block
+    cursor: pointer
+
+.bold
+  font-weight: bold
+
+.details_block .right_content .prop .content 
+    .sazi-calc
+        &__input-column-add
+            line-height: 20px
+    .sazi-calc
+        &__info-list
+            margin-right: 29px
+            &:last-child
+                margin-right: 0
+    @media screen and (min-width: 501px) and (max-width: 768px)
+        .sazi-calc
+            &__buttons-wrapper
+                 flex-wrap: wrap
+            &__btn
+                margin-bottom: 15px
+                width: 100%
+                padding: 0 20px
+                height: 50px
+                &:not(:last-child)
+                    margin-right: 0
+            .column-names
+                display: none
+            &__input-column, &__input-wrapper-animate
+                width: 100%
+            &__input-item input.count
+                width: auto
+                margin: 0 10px
+            &__input-wrapper-animate,  &__input-wrapper
+                flex-wrap: wrap
+            &__input-column:not(:last-child)
+                margin-bottom: 30px
+            &__input-column-title
+                margin-bottom: 20px
+                text-align: center
+            &__result-item
+                &.stizD
+                    .sazi-calc__materials
+                        flex-direction: column
+                        align-items: center
+                        .mr-materials-item 
+                            margin-right: 0
+            &__result
+                &-wrapper
+                    flex-wrap: wrap
+                    justify-content: center
+                &-item 
+                    width: 100%
+                    &:not(:last-child)
+                        border-bottom: 1px solid $border_color
+                        padding-bottom: 45px
+                &-title
+                    margin-bottom: 20px
+                    
+            &__materials
+                justify-content: center
+                .block-or
+                    left: -35%
+            &__materials-img
+                width: 170px
+                height: auto
+            &__materials-count
+                font-size: 24px
+            h3 
+                margin: 20px 0 34px 0
+            &__input-item
+                width: 100%
+                input
+                    &.ph-hide
+                        &::-webkit-input-placeholder
+                            color: $border_color
+                        &:-moz-placeholder
+                            color: $border_color
+                        &::-moz-placeholder
+                            color: $border_color
+                        &:-ms-input-placeholder
+                            color: $border_color
+                        &::placeholder
+                            color: $border_color
+                        &:-ms-input-placeholder
+                            color: $border_color
+            &__input-column-add
+                &.mobile
+                    display: block
+
+.fade-enter-active, .fade-leave-active
+  transition: opacity .3s
+.fade-enter, .fade-leave-to
+  opacity: 0
+
+.fade-2-enter-active, .fade-2-leave-active
+  transition: opacity .5s ease-out
+.fade-2-enter, .fade-2-leave-to
+  opacity: 0
+
+.column-enter-active
+  transition: opacity .7s
+.column-leave-active
+  transition: opacity .4s
+.column-move
+  transition: transform 4s
+.column-enter
+  opacity: 0.1
+.column-leave-to
+  opacity: 0
+
+
+.slide-enter-active
+    transition: all .5s
+.slide-leave-active
+    transition: all .5s
+.slide-enter, .slide-leave-to
+    max-height: 0
+
+.slideDown-enter-active
+  transition: all .6s
+.slideDown-leave-active
+  transition: all .6s
+.slideDown-enter, .slideDown-leave-to
+  transform: translateY(-1200px)
